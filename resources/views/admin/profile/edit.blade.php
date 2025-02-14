@@ -8,9 +8,8 @@ Profile
         <div class="page-title-box d-flex align-items-center justify-content-between">
             <div class="page-title-right d-flex align-items-center">
 
-                <a href="{{ route('admin.plates.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
-                    <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
-                </a>
+               
+
             </div>
 
             <div class="page-title-right">
@@ -35,10 +34,10 @@ Profile
         @include('admin.profile.partials.update-password-form')
 
     </div>
-    <div class="col-md-12">
+    {{-- <div class="col-md-12">
 
         @include('admin.profile.partials.delete-user-form')
-    </div>
+    </div> --}}
 
 </div>
 
