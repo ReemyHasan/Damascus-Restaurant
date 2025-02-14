@@ -1,6 +1,6 @@
 @extends('layouts.auth-layout.master-without-nav')
 @section('title')
-    @lang('translation.Login')
+    @lang('Login')
 @endsection
 @section('content')
     <div class="account-pages my-5 pt-sm-5">

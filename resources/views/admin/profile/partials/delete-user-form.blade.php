@@ -10,7 +10,7 @@
                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
             </p>
             <x-forms.button type="button" id="DeleteAccountBtn" text="Delete Account" icon="mdi mdi-trash-can" class="btn btn-danger waves-effect waves-light" :extraAttributes="['data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmDeleteModal']" />
-            <x-forms.input-error input="delete_account_password" :messages="$errors->get('delete_account_password')" />
+                <span class="invalid-feedback d-block delete_account_password_error" role="alert"></span>
 
 
 
@@ -22,7 +22,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{ route('admin.profile.destroy') }}" class="p-6">
+                            <form id="deleteAccountForm" method="post" action="{{ route('admin.profile.destroy') }}" class="p-6">
                                 @csrf
                                 @method('delete')
 
@@ -41,8 +41,11 @@
 
                                 <div class="mt-6 flex justify-end text-end">
                                     <x-forms.button type="button" id="cancelBtn" :disabled="false" text="Cancel" class="btn btn-secondary waves-effect waves-light" :extraAttributes="['data-bs-dismiss' => 'modal', 'data-bs-target' => '#confirmDeleteModal']" />
+                                        <button type="submit" id="deleteAccountBtn" class="btn btn-danger waves-effect waves-light">
+                                            <span class="spinner-border spinner-border-sm d-none" id="deleteSpinner"></span>
+                                            Delete Account
+                                        </button>
 
-                                    <x-forms.button type="submit" id="DeleteBtn" :disabled="false" class="btn btn-danger waves-effect waves-light" text="Delete Account" />
                                 </div>
                             </form>
                         </div>

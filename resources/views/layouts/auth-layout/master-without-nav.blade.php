@@ -30,6 +30,7 @@
     <body class="authentication-bg">
     @show
     @yield('content')
+    @stack('scripts')
 </body>
 
 </html>

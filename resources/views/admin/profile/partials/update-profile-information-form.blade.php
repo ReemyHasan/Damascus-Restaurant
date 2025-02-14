@@ -7,7 +7,7 @@
             <h5 class="my-0 text-primary"><i class="fas fa-user-edit me-3"></i>{{ __('Profile Information') }}</h5>
         </div>
         <div class="card-body">
-            <form method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6">
+            <form id="profileUpdateForm" method="post" action="{{ route('admin.profile.update') }}" class="mt-6 space-y-6">
                 @csrf
                 @method('patch')
 
@@ -16,7 +16,10 @@
                     <x-forms.input-text id="email" name="email" type="email"
                         value="{{ old('email', auth()->user()->email) }}" placeholder="Enter your email"
                         autofocus autocomplete="username" />
-                    <x-forms.input-error input="email" :messages="$errors->get('email')" />
+
+                        <span class="invalid-feedback d-block email_error" role="alert">
+                        </span>
+
                 </div>
 
 
@@ -26,7 +29,11 @@
                         <x-forms.input-text id="name" name="name" type="name"
                             value="{{ old('name', auth()->user()->name) }}" placeholder="Enter your name" required
                             autofocus autocomplete="username" />
-                        <x-forms.input-error input="name" :messages="$errors->get('name')" />
+
+
+                        <span class="invalid-feedback d-block name_error" role="alert">
+                        </span>
+
                     </div>
 
 
@@ -52,7 +59,11 @@
 
                 <div class="flex items-center gap-4">
                     <div class="mt-3 text-end">
-                        <x-forms.button type="submit" id="submitBtn" :disabled="false" text="Save" />
+                        <button type="submit" id="saveProfileBtn" class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm d-none" id="profileSpinner"></span>
+                            Save
+                        </button>
+
                     </div>
 
                 </div>
