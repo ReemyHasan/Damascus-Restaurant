@@ -1,64 +1,70 @@
 @extends('layouts.admin-layout.layout')
-@section('title')
-    @lang('global.show') @lang('cruds.service.service')
-@endsection
-@section('css')
-<style>
-</style>
-@endsection
+
+@section('title', 'Plate Details')
+
 @section('content')
-    @component('common-components.breadcrumb')
-        @slot('pagetitle')
-            @lang('cruds.service.services')
-        @endslot
-        @slot('title')
-            @lang('global.show') @lang('cruds.service.service')
-        @endslot
-        @slot('route')
-            {{ route('admin.services.index') }}
-        @endslot
-    @endcomponent
-    <div class="row custome-template">
-        <div class="col-12">
-            <div class="row mb-3">
-                <div class="col d-flex align-items-center justify-content-end">
-                    <a href="{{ route('admin.services.index') }}" class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center" style="width:100px">
-                        <i class="uil-arrow-left me-2" style="font-size:18px"></i> @lang('global.back')
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Plate Details</h4>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.plates.index') }}">Plates List</a></li>
+                    <li class="breadcrumb-item active">Plate Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-lg-12 mx-auto">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                    <h4 class="card-title">Plate Information</h4>
+                    <a href="{{ route('admin.plates.index') }}" class="btn btn-info fw-bold waves-effect waves-light">
+                        <i class="uil-arrow-left me-1"></i> Back
                     </a>
                 </div>
-            </div>
-                    <div class="table-responsive">
-                        <table class="custome-table table table-striped table-nowrap mb-0">
-                            <thead>
-                                <tr>
-                                    <th scope="col">@lang('global.key')</th>
-                                    <th scope="col">@lang('global.value')</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th class="text-nowrap" scope="row">@lang('cruds.service.id')</th>
-                                    <td>{{ $service->id }}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-nowrap" scope="row">@lang('cruds.service.title')</th>
-                                    <td>{{ $service->title }}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-nowrap" scope="row">@lang('cruds.service.description')</th>
-                                    <td>{!! $service->description !!}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">@lang('global.image')</th>
-                                    <td><img src="{{ $service?->image?->url }}" alt="">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-            </div>
-        </div> <!-- end col -->
-    </div>
-@endsection
 
-@section('script')
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th width="30%">Title</th>
+                                <td>{{ $plate->title ?? 'N/A' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Category</th>
+                                <td>{{ $plate->category->title ?? 'Uncategorized' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{!! $plate->description ?? 'No description available' !!}</td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td>{{ $plate->price }}</td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td>
+                                    @if(isset($plate->image))
+                                        <img src="{{ $plate->image->url }}" class="img-thumbnail" width="150">
+                                    @else
+                                        <span class="text-muted">No image available</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

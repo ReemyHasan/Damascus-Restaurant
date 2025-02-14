@@ -7,6 +7,8 @@ use App\Http\Requests\StorePlateRequest;
 use App\Http\Requests\UpdatePlateRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PlateRequest;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -15,70 +17,63 @@ class PlateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $plates = Plate::all();
-        return view('admin.plates.index',compact('plates'));
-    }
+        $query = Plate::query();
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where('title', 'LIKE', "%{$search}%")
+                  ->orWhereHas('category', function ($q) use ($search) {
+                      $q->where('title', 'LIKE', "%{$search}%");
+                  });
+        }
+
+        $plates = $query->paginate(10);
+        return view('admin.plates.index', compact('plates'));
+    }
     public function create()
     {
-        return view('admin.plates.create');
-
+        $categories = Category::all();
+        return view('admin.plates.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(PlateRequest $request)
     {
 
-        $plate = Plate::create($request->all());
+        $plate = Plate::create($request->only(['title', 'category_id', 'description', 'price']));
 
-        if ($request->has('image')) {
-            $plate->uploadImage($request->get('image'));
+        if ($request->hasFile('image')) {
+            $plate->addMedia($request->file('image'))->toMediaCollection('images');
         }
-        session()->flash('success', 'Plate added successfully!');
-        return redirect()->route('admin.plates.index');
+
+        return redirect()->route('admin.plates.index')->with('success', 'Plate created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Plate $plate)
-    {
-        return view('admin.plates.show',compact('plate'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Plate $plate)
     {
-        return view('admin.plates.edit',compact('plate'));
+        $categories = Category::all();
+        return view('admin.plates.create', compact('plate', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function show(Plate $plate)
+    {
+        return view('admin.plates.show', compact('plate'));
+    }
     public function update(PlateRequest $request, Plate $plate)
     {
-        $plate->update($request->all());
-        if ($request->has('image')) {
-            $plate->uploadImage($request->get('image'));
+
+
+        $plate->update($request->only(['title', 'category_id', 'description', 'price']));
+
+        if ($request->hasFile('image')) {
+            $plate->clearMediaCollection('images'); // Remove old image
+            $plate->addMedia($request->file('image'))->toMediaCollection('images');
         }
-        session()->flash('success', 'Plate updated successfully!');
-        return redirect()->route('admin.plates.index');
 
+        return redirect()->route('admin.plates.index')->with('success', 'Plate updated successfully.');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Plate $plate)
     {
         abort_if(!Gate::allows('plate_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');

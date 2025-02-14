@@ -26,15 +26,24 @@
         </div>
     </div>
 </div>
-<!-- end page title -->
-
 
     <div class="row custome-template">
         <div class="col-12">
             <div class="">
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-md-6">
+                            <form action="{{ route('admin.plates.index') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Search by Title or Category"
+                                           value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="mdi mdi-magnify"></i> Search
+                                    </button>
 
+                                </div>
+                            </form>
+                        </div>
                             <div class="col d-flex align-items-center justify-content-start justify-content-md-end">
                                 <a href="{{ route('admin.plates.create') }}">
                                     <x-forms.button type="submit" id="addRoleBtn" :disabled="false" text="Add New"
@@ -42,6 +51,9 @@
                                         icon="uil-plus-circle ms-2" iconStyle="font-size:16px" slotPosition="right" />
                                 </a>
                             </div>
+
+
+
                     </div>
 
                     <div class="table-responsive">
@@ -93,6 +105,11 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div>
+                    <div class="pagination-area mt-15 mb-50">
+                        <nav aria-label="Page navigation example">
+                            {{ $plates->links() }}
+                        </nav>
                     </div>
                 </div>
             </div>

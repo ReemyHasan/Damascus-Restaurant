@@ -28,7 +28,13 @@ return [
         'link' => ['validation' => ['nullable', 'string', 'max:255']],
         'link_target' => ['validation' => ['required', 'in:_self,_blank']],
     ],
-
+    'seo_data' => [
+        'content' => [
+            'image' =>  ['validation' => ['required']],
+            'title' =>  ['validation' => ['required', 'string']],
+            'description' => ['validation' => ['nullable']],
+        ],
+    ],
     // 'copyright' =>  ['validation' => ['required', 'string']],
 
 ];

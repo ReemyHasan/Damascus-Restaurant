@@ -1,36 +1,106 @@
-<x-breadcrumb model="service" action="global.create_new">
-    <div class="add-element p-3">
-        <form method="POST" action="{{ route('admin.services.store') }}" class="needs-validation" novalidate>
-            @csrf
-            <x-translatable-area :fields="[
-    ['name' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => __('Enter title')],
-    ['name' => 'description', 'label' => 'Description', 'type' => 'editor',
-     'placeholder' => __('Enter  description')],
-['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'placeholder' => __('Enter slug') ],
-]"/>
-            <div class="mb-3 row">
-                <div class="col-12">
-                    <x-forms.input-label for="image" :value="__('image')" class="col-md-2 col-form-label"/>
+@extends('layouts.admin-layout.layout')
+@section('title')
+{{ isset($plate) ? 'Edit Plate' : 'Create Plate' }}
+@endsection
+@section('content')
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right d-flex align-items-center">
+                <h4 class="mb-0">Plates</h4>
+            </div>
 
-                    <div class="filepond-container">
-                        <x-forms.file-uploader name="image" :uploadUrl="route('admin.file.upload')"
-                                               :revertUrl="route('admin.file.revert')"
-                                               acceptedTypes="image/*" id="image"
-                                               :existingFile="null"
-                                               :maxFileSize="5242880"/>
-                    </div>
-                    <x-forms.input-error input="image" :messages="$errors->get('image')"/>
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ route('admin.plates.index') ?? url()->previous() }}">Plates List</a></li>
+                    <li class="breadcrumb-item active">{{ isset($plate) ? 'Edit Plate' : 'Create Plate' }}</li>
 
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+
+<div class="row custome-template">
+    <div class="col-12">
+        <div class="row mb-3">
+            <div class="col d-flex align-items-center justify-content-end">
+                <a href="{{ route('admin.plates.index') }}" style="width:100px" class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center">
+                    <i style="font-size:18px" class="uil-arrow-left me-2"></i> Back
+                </a>
+            </div>
+        </div>
+        <div class="add-element p-3">
+            <form action="{{ isset($plate) ? route('admin.plates.update', $plate) : route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @isset($plate)
+                @method('PUT')
+                @endisset
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $plate->title ?? '') }}" required>
                 </div>
 
-            </div>
-            <div class="d-flex flex-wrap gap-3 mt-3">
-                <x-forms.button icon="uil uil-arrow-right ms-2" type="submit" id="submitBtn"
-                                :disabled="false" text="global.submit"/>
-                <x-forms.button type="reset" id="resetBtn"
-                                class="btn btn-outline-danger waves-effect waves-light w-md" :disabled="false"
-                                text="global.reset"/>
-            </div>
-        </form>
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Category</label>
+                    <select class="form-control" id="category_id" name="category_id" required>
+                        <option value="">Select a Category</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ (old('category_id', $plate->category_id ?? '') == $category->id) ? 'selected' : '' }}>
+                            {{ $category->title }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $plate->description ?? '') }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $plate->price ?? '') }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+
+                    <!-- Image Preview -->
+                    <div class="mt-3">
+                        @if(isset($plate) && $plate->image)
+                        <img id="imagePreview" src="{{ $plate->image->url }}" class="img-thumbnail" width="150">
+                        @else
+                        <img id="imagePreview" class="img-thumbnail d-none" width="150">
+                        @endif
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">{{ isset($plate) ? 'Update' : 'Create' }}</button>
+                <a href="{{ route('admin.plates.index') }}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
     </div>
-</x-breadcrumb>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+    function previewImage(event) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let img = document.getElementById('imagePreview');
+            img.src = reader.result;
+            img.classList.remove('d-none');
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+</script>
+@endpush

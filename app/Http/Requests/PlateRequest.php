@@ -23,11 +23,13 @@ class PlateRequest extends FormRequest
     public function rules(): array
     {
         return [
+          
+
             'title' => ['required','string','max:255', Rule::unique('plates')->ignore($this->plate, 'title')],
-            'description' => 'nullable',
+            'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|string|max:255',
-            'image' => 'file|mimes:png,jpg,svg,webp,jpeg'
+            'image' => 'nullable|image|mimes:png,jpg,svg,webp,jpeg|max:2048'
 
         ];
     }

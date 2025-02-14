@@ -107,6 +107,26 @@ Home Page Content
             </select>
         </div>
 
+
+          {{-- Hero Section --}}
+          <div class="mb-4">
+            <h4>SEO Date</h4>
+            <label>Title</label>
+            <input type="text" name="seo_data[title]" class="form-control"
+                value="{{ $frontends['seo_data']->values['title'] ?? '' }}">
+
+            <label>Description</label>
+            <input type="text" name="seo_data[description]" class="form-control"
+                value="{{ $frontends['seo_data']->values['description'] ?? '' }}">
+
+                <label>Image</label>
+                <input type="file" name="seo_data[image]" class="form-control" id="SEOInput">
+                <div class="mt-2">
+                    <img id="SEOPreview" src="{{ $frontends['seo_data']->image->url ?? '' }}" width="150" class="rounded border p-1"
+                        style="{{ $frontends['seo_data']->image ? '' : 'display: none;' }}">
+                </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
 {{-- </div> --}}
@@ -126,6 +146,15 @@ Home Page Content
         reader.readAsDataURL(event.target.files[0]);
     });
 
+    document.getElementById('SEOInput').addEventListener('change', function(event) {
+        let reader = new FileReader();
+        reader.onload = function() {
+            let img = document.getElementById('SEOPreview');
+            img.src = reader.result;
+            img.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
         let container = document.getElementById('openingHoursContainer');

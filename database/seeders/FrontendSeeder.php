@@ -62,7 +62,16 @@ class FrontendSeeder extends Seeder
                     'link_target' => "_self",
 
                 ]
-            ]
+                ],
+
+                [
+                    'key' => 'seo_data',
+                    'values' => [
+                        'image' => null,
+                        'title' => 'Damaskus Restaurant Ravensburg',
+                        'description' => 'Enjoy Our Delicious Meal'
+                    ]
+                ],
 
 
         ];
@@ -71,7 +80,7 @@ class FrontendSeeder extends Seeder
             $frontend = Frontend::create($item);
 
 
-            if ($item['key'] == "hero_section") {
+            if ($item['key'] == "hero_section" || $item['key'] == "seo_data") {
                 $frontend->addMediaFromUrl($hero_image)->toMediaCollection('images');
             }
         }

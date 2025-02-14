@@ -535,3 +535,62 @@ body[data-sidebar-size="sm"] .vertical-menu #sidebar-menu>ul>li:hover>ul a:hover
  .card-info .properties li svg{
     margin-inline-end: 8px;
 }
+
+
+/*Pagination*/
+.pagination-area .page-item {
+    margin: 0 5px;
+}
+
+.pagination-area .page-item:first-child {
+    margin-left: 0;
+}
+
+.pagination-area .page-item:first-child .page-link {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.pagination-area .page-item:last-child .page-link {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.pagination-area .page-item.active .page-link,
+.pagination-area .page-item:hover .page-link {
+    color: #fff;
+    background: #00823e;
+}
+
+.pagination-area .page-item .page-link {
+    border: 0;
+    padding: 0 10px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: 0;
+    width: 34px;
+    height: 34px;
+    display: block;
+    border-radius: 4px;
+    background: #e9ecee;
+    line-height: 34px;
+    text-align: center;
+    font-size: 13px;
+    color: #383e50;
+}
+
+.pagination-area .page-item .page-link.dot {
+    background-color: transparent;
+    color: #adb5bd;
+    letter-spacing: 2px;
+}
+
+.pagination-area .page-item .page-link:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.pagination-area .page-item .page-link:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
