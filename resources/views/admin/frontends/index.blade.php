@@ -146,11 +146,7 @@ Home Page Content
     document.addEventListener('DOMContentLoaded', function() {
         let container = document.getElementById('openingHoursContainer');
         let addButton = document.getElementById('addOpeningHour');
-        let hourIndex = {
-            {
-                count($frontends - > filter(fn($f, $k) => Str::startsWith($k, 'opening_hours.element')))
-            }
-        };
+        let hourIndex = {{count($frontends->filter(fn($f, $k) => Str::startsWith($k, 'opening_hours.element')))}};
 
         addButton.addEventListener('click', function() {
             let newRow = document.createElement('div');

@@ -11,4 +11,8 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['title', 'description'];
+
+    public function plates(){
+        return $this->hasMany(Plate::class, 'category_id');
+    }
 }
