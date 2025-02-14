@@ -2,8 +2,31 @@
 @section('title')
 Home Page Content
 @endsection
-@section('css')
-@endsection
+@push('css')
+<style>
+    .form-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    .section-title {
+        background: #006d98;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+    .image-preview {
+        max-width: 150px;
+        max-height: 150px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        padding: 5px;
+    }
+</style>
+@endpush
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -25,15 +48,14 @@ Home Page Content
         </div>
     </div>
 </div>
-<hr>
 <div class="row custome-template custome-template-card card p-3">
 
     <form action="{{ route('admin.frontend.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         {{-- Hero Section --}}
-        <div class="mb-4">
-            <h4>Hero Section</h4>
+        <div class="mb-4 form-section">
+            <h4 class="section-title">Hero Section</h4>
             <label>Title</label>
             <input type="text" name="hero_section[title]" class="form-control" value="{{ $frontends['hero_section']->values['title'] ?? '' }}">
 
@@ -43,14 +65,14 @@ Home Page Content
             <label>Image</label>
             <input type="file" name="hero_section[image]" class="form-control" id="heroImageInput">
             <div class="mt-2">
-                <img id="heroImagePreview" src="{{ $frontends['hero_section']->image->url ?? '' }}" width="150" class="rounded border p-1" style="{{ $frontends['hero_section']->image ? '' : 'display: none;' }}">
+                <img id="heroImagePreview" src="{{ $frontends['hero_section']->image->url ?? '' }}" width="150" class="image-preview  mt-2" style="{{ $frontends['hero_section']->image ? '' : 'display: none;' }}">
             </div>
         </div>
         <hr style="font-weight: 600;">
 
         {{-- Contact Section --}}
-        <div class="mb-4">
-            <h4>Contact</h4>
+        <div class="mb-4 form-section">
+            <h4 class="section-title">Contact</h4>
             <label>Address</label>
             <input type="text" name="contact[address]" class="form-control" value="{{ $frontends['contact']->values['address'] ?? '' }}">
 
@@ -66,8 +88,8 @@ Home Page Content
         <hr style="font-weight: 600;">
 
         {{-- Opening Hours --}}
-        <div class="mb-4">
-            <h4>Opening Hours</h4>
+        <div class="mb-4 form-section">
+            <h4 class="section-title">Opening Hours</h4>
             <div id="openingHoursContainer">
                 @foreach($frontends['opening_hours']->elements() as $index => $frontend)
                 <div class="opening-hour-item mb-2 d-flex align-items-center">
@@ -82,8 +104,8 @@ Home Page Content
         <hr style="font-size: 400px;">
 
         {{-- Footer Links --}}
-        <div class="mb-4">
-            <h4>Footer Links</h4>
+        <div class="mb-4 form-section">
+            <h4 class="section-title">Footer Links</h4>
             <label>Title</label>
             <input type="text" name="footer_link[title]" class="form-control" value="{{ $frontends['footer_link']->values['title'] ?? '' }}">
 
@@ -100,8 +122,8 @@ Home Page Content
 
 
         {{-- Hero Section --}}
-        <div class="mb-4">
-            <h4>SEO Date</h4>
+        <div class="mb-4 form-section">
+            <h4 class="section-title">SEO Date</h4>
             <label>Title</label>
             <input type="text" name="seo_data[title]" class="form-control" value="{{ $frontends['seo_data']->values['title'] ?? '' }}">
 
@@ -112,7 +134,7 @@ Home Page Content
             <label>Image</label>
             <input type="file" name="seo_data[image]" class="form-control" id="SEOInput">
             <div class="mt-2">
-                <img id="SEOPreview" src="{{ $frontends['seo_data']->image->url ?? '' }}" width="150" class="rounded border p-1" style="{{ $frontends['seo_data']->image ? '' : 'display: none;' }}">
+                <img id="SEOPreview" src="{{ $frontends['seo_data']->image->url ?? '' }}" width="150" class="image-preview mt-2" style="{{ $frontends['seo_data']->image ? '' : 'display: none;' }}">
             </div>
         </div>
 
