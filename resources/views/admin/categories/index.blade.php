@@ -1,24 +1,24 @@
 @extends('layouts.admin-layout.layout')
 @section('title')
-    Plates List
+Categories List
 @endsection
 @section('content')
-   <!-- start page title -->
+<!-- start page title -->
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
             <div class="page-title-right d-flex align-items-center">
 
-                    <a href="{{ route('admin.plates.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
-                        <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
-                    </a>
-                <h4 class="mb-0">Plates</h4>
+                <a href="{{ route('admin.categories.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
+                    <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
+                </a>
+                <h4 class="mb-0">Categories</h4>
             </div>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.plates.index') ?? url()->previous() }}">Plates List</a></li>
-                    <li class="breadcrumb-item active">Plates</li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.categories.index') ?? url()->previous() }}">Categories List</a></li>
+                    <li class="breadcrumb-item active">Categories</li>
 
                 </ol>
             </div>
@@ -29,99 +29,142 @@
 <!-- end page title -->
 
 
-    <div class="row custome-template">
-        <div class="col-12">
-            <div class="">
-                <div class="card-body">
-                    <div class="row">
+<div class="row custome-temcategory">
+    <div class="col-12">
+        <div class="">
+            <div class="card-body">
+                <div class="row">
 
-                            <div class="col d-flex align-items-center justify-content-start justify-content-md-end">
-                                <a href="{{ route('admin.plates.create') }}">
-                                    <x-forms.button type="submit" id="addRoleBtn" :disabled="false" text="Add New"
-                                        class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center"
-                                        icon="uil-plus-circle ms-2" iconStyle="font-size:16px" slotPosition="right" />
-                                </a>
-                            </div>
-                    </div>
+                    <div class="col d-flex align-items-center justify-content-start justify-content-md-end">
+                        <button class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#categoryModal">
+                            <i class="uil-plus-circle ms-2"></i> Add New
+                        </button>
 
-                    <div class="table-responsive">
-                        <table class="custome-table table mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#ID</th>
-                                    <th>Image</th>
-                                    <th>Title</th>
-                                    <th>Category</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($plates as $plate)
-                                    <tr>
-                                        <td>{{ $plate->id }}</td>
-                                        <td>
-                                            <img src="{{ $plate?->image?->url }}"
-                                             width="100" alt="{{$plate->title}}">
-                                        </td>
-                                        <td>{{ $plate->title }}</td>
-                                        <td>{!! $plate->category->title !!}</td>
-                                        <td>
-                                                <a href="{{ route('admin.plates.edit', $plate) }}">
-                                                    <x-forms.button type="button"
-                                                        class="btn btn-primary waves-effect waves-light edit-plate-button"
-                                                        icon="mdi mdi-book-edit" />
-                                                </a>
-
-                                                <button data-id="{{ $plate->id }}" class="btn btn-danger delete-button">
-                                                    <i class="mdi mdi-trash-can"></i>
-                                                </button>
-                                                <form id="delete-form-{{ $plate->id }}" action="{{ route('admin.plates.destroy', $plate) }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                </form>
-                                                <a href="{{ route('admin.plates.show', $plate) }}">
-                                                    <x-forms.button type="button"
-                                                        class="btn btn-outline-primary waves-effect waves-light"
-                                                        icon="mdi mdi-eye-circle" />
-                                                </a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">No Plates Exists.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                        {{-- <a href="{{ route('admin.categories.create') }}">
+                        <x-forms.button type="submit" id="addRoleBtn" :disabled="false" text="Add New" class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center" icon="uil-plus-circle ms-2" iconStyle="font-size:16px" slotPosition="right" />
+                        </a> --}}
                     </div>
                 </div>
+
+                <div class="table-responsive">
+                    <table class="custome-table table mb-0">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($categories as $category)
+                            <tr>
+                                <td>{{ $category->id }}</td>
+
+                                <td>{{ $category->title }}</td>
+                                <td>{!! $category->description !!}</td>
+                                <td>
+                                    <button class="btn btn-primary waves-effect waves-light edit-category-button"
+                                     data-id="{{ $category->id }}"
+                                      data-title="{{ $category->title }}"
+                                       data-description="{{ $category->description }}">
+                                        <i class="mdi mdi-pencil"></i>
+
+                                    </button>
+                                        <button data-id="{{ $category->id }}" class="btn btn-danger delete-button">
+                                            <i class="mdi mdi-trash-can"></i>
+                                        </button>
+                                        <form id="delete-form-{{ $category->id }}" action="{{ route('admin.categories.destroy', $category) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center">No Categories Exists.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div> <!-- end col -->
-    </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+@include('admin.categories.Modal')
 @endsection
 
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Open Modal for Creating Category
+        $('.btn-info').click(function() {
+            $('#categoryModalLabel').text('Add Category');
+            $('#categoryForm')[0].reset();
+            $('#categoryId').val('');
+        });
+
+        // Open Modal for Editing Category
+        $('.edit-category-button').click(function() {
+            $('#categoryModalLabel').text('Edit Category');
+            $('#categoryId').val($(this).data('id'));
+            $('#title').val($(this).data('title'));
+            $('#description').val($(this).data('description'));
+            $('#categoryModal').modal('show');
+        });
+
+        $('#categoryForm').submit(function(e) {
+            e.preventDefault();
+
+            let id = $('#categoryId').val();
+            let formData = $(this).serialize();
+            let url = id ? `/admin/categories/${id}` : `/admin/categories`;
+            let method = id ? 'POST' : 'POST';
+            if (id) {
+                formData += '&_method=PUT';
+            }
+
+            $.ajax({
+                type: method
+                , url: url
+                , data: formData
+                , success: function(response) {
+                    $('#categoryModal').modal('hide');
+                    localStorage.setItem('success', 'Category updated successfully!');
+
+                    location.reload();
+                }
+                , error: function(xhr) {
+                    if (xhr.status === 422) {
+                        $.each(xhr.responseJSON.errors, function(field, messages) {
+                            $("." + field + "_error").text(messages[0]);
+                        });
+                    }
+                }
+            });
+        });
+
         document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', function() {
-                const plateId = this.getAttribute('data-id');
+                const categoryId = this.getAttribute('data-id');
                 Swal.fire({
-                    title: 'Are You Sure?',
-                    text: 'This will be permanently deleted.',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Delete!',
-                    cancelButtonText: 'Cancel'
+                    title: 'Are You Sure?'
+                    , text: 'This will be permanently deleted.'
+                    , icon: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, Delete!'
+                    , cancelButtonText: 'Cancel'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        document.getElementById('delete-form-' + plateId).submit();
+                        document.getElementById('delete-form-' + categoryId).submit();
                     }
                 });
             });
         });
     });
+
 </script>
 @endpush

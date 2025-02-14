@@ -19,7 +19,7 @@
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
                             <a href="{{ route('website.home') }}" class="mb-5 d-block auth-logo">
-                                <img src="{{ URL::asset('website/img/logo.png') }}" alt="">
+                                <img src="{{ URL::asset('website/img/Logo-Damaskus.png') }}" alt="" width="100px">
                             </a>
                             </div>
                             <div class="p-2 mt-4">
