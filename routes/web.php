@@ -25,16 +25,8 @@ Route::middleware(['auth'])->prefix('/admin')->as('admin.')->group(function () {
     Route::delete('/profile', [ProfileController::class,"destroy"])->name('profile.destroy');
 
     // forntend management
-    Route::get('/frontends', [FrontendController::class,'index'])->name('frontends.index');
-    Route::get('/frontends/{key}/edit', [FrontendController::class,'edit'])->name('frontends.edit');
-    Route::put('/frontends/{key}', [FrontendController::class,'update'])->name('frontends.update');
-    Route::get('/frontends/{key}', [FrontendController::class,'show'])->name('frontends.show');
-
-    Route::post('/frontends/{section}/elements', [FrontendController::class,'storeElement'])->name('frontends.elements.store');
-    Route::put('/frontends_elements/{section}/{element}', [FrontendController::class,'updateElement'])->name('frontends.elements.update');
-    Route::get('/frontends_elements/{section}/{element}', [FrontendController::class,'editElement'])->name('frontends.elements.edit');
-    Route::delete('/frontends_elements/{element}', [FrontendController::class,'destroyElement'])->name('frontends.elements.destroy');
-
+    Route::get('/frontend', [FrontendController::class,'index'])->name('frontend.index');
+    Route::post('/admin/frontend/update', [FrontendController::class, 'update'])->name('frontend.update');
 
 
 

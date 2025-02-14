@@ -21,47 +21,47 @@ class FrontendSeeder extends Seeder
             [
                 'id' => 1,
                 'key' => 'hero_section',
-                'values' => json_encode([
+                'values' => [
                     'image' => null,
                     'title' => 'Damaskus Restaurant Ravensburg',
                     'description' => 'Enjoy Our Delicious Meal'
-                ])
+                ]
             ],
             [
                 'key' => 'contact',
-                'values' => json_encode([
+                'values' => [
                     'address' => '123 Street, New York, USA',
                     'phone' => '+012 345 67890',
                     'email' => 'info@example.com',
                     'whatsapp' => '+012 345 67890',
-                ])
+                ]
             ],
             [
                 'key' => 'opening_hours',
-                'values' => json_encode([])
+                'values' => []
             ],
             [
                 'key' => 'opening_hours.element1',
-                'values' => json_encode([
+                'values' => [
                     'date' => 'Monday - Saturday',
                     'time' => '09AM - 09PM',
-                ])
+                ]
             ],
             [
                 'key' => 'opening_hours.element2',
-                'values' => json_encode([
+                'values' => [
                     'date' => 'Sunday',
                     'time' => '10AM - 08PM',
-                ])
+                ]
             ],
             [
                 'key' => 'footer_link',
-                'values' => json_encode([
+                'values' => [
                     'title' => "Damascus-Restaurant-Ravensburg",
                     'link' => "#",
                     'link_target' => "_self",
 
-                ])
+                ]
             ]
 
 

@@ -12,6 +12,9 @@ class Frontend extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
     protected $fillable = ['key', 'values'];
+    protected $casts = [
+        'values' => 'array',
+    ];
 
     public static function boot()
     {
@@ -37,5 +40,10 @@ class Frontend extends Model implements HasMedia
     {
         $this->addMediaConversion('webp')
             ->format('webp');
+    }
+
+    public function elements()
+    {
+        return Frontend::where('key', 'like', $this->key . '.element%')->get();
     }
 }

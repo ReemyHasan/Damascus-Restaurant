@@ -36,7 +36,7 @@
 
 
                 <x-sidebar-link title="Plates" :route="route('admin.plates.index')" icon="fas fa-chart-line" />
-                <x-sidebar-link title="Home Page" :route="route('admin.frontends.index')" icon="fas fa-layer-group" />
+                <x-sidebar-link title="Home Page" :route="route('admin.frontend.index')" icon="fas fa-layer-group" />
 
 
 
