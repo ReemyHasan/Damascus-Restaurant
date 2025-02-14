@@ -68,8 +68,9 @@ class FrontendSeeder extends Seeder
                     'key' => 'seo_data',
                     'values' => [
                         'image' => null,
-                        'title' => 'Damaskus Restaurant Ravensburg',
-                        'description' => 'Enjoy Our Delicious Meal'
+                        'title' => 'Damascus Restaurant Ravensburg',
+                        'description' => 'Enjoy Our Delicious Meal',
+                        'keywords'  => 'restaurant, Damascus, Ravensburg, Meals'
                     ]
                 ],
 

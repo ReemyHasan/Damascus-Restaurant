@@ -33,6 +33,8 @@ return [
             'image' =>  ['validation' => ['required']],
             'title' =>  ['validation' => ['required', 'string']],
             'description' => ['validation' => ['nullable']],
+            'keywords' => ['validation' => ['nullable']],
+
         ],
     ],
     // 'copyright' =>  ['validation' => ['required', 'string']],

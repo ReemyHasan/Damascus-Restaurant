@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="add-element p-3">
-            <form action="{{ isset($plate) ? route('admin.plates.update', $plate) : route('admin.plates.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="plate-form" method="POST" enctype="multipart/form-data">
                 @csrf
                 @isset($plate)
                 @method('PUT')
@@ -44,6 +44,8 @@
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $plate->title ?? '') }}" required>
+                    <span class="text-danger error-title"></span>
+
                 </div>
 
                 <div class="mb-3">
@@ -56,16 +58,22 @@
                         </option>
                         @endforeach
                     </select>
+                    <span class="text-danger error-category_id"></span>
+
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $plate->description ?? '') }}</textarea>
+                    <span class="text-danger error-description"></span>
+
                 </div>
 
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="text" class="form-control" id="price" name="price" value="{{ old('price', $plate->price ?? '') }}" required>
+                    <span class="text-danger error-price"></span>
+
                 </div>
 
                 <div class="mb-3">
@@ -80,6 +88,8 @@
                         <img id="imagePreview" class="img-thumbnail d-none" width="150">
                         @endif
                     </div>
+                    <span class="text-danger error-image"></span>
+
                 </div>
 
                 <button type="submit" class="btn btn-primary">{{ isset($plate) ? 'Update' : 'Create' }}</button>
@@ -101,6 +111,45 @@
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+
+    $(document).ready(function() {
+        $('#plate-form').on('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            let url = "{{ isset($plate) ? route('admin.plates.update', $plate) : route('admin.plates.store') }}";
+            let method = "{{ isset($plate) ? 'POST' : 'POST' }}"; // Laravel uses POST for PUT requests with `_method`
+
+            $('.text-danger').text(''); // Clear previous errors
+
+            $.ajax({
+                url: url,
+                type: method,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('button[type="submit"]').prop('disabled', true);
+                },
+                success: function(response) {
+                    $('#success-message').text(response.message).removeClass('d-none');
+                    localStorage.setItem('success', 'Plate Saved successfully!');
+                    window.location.href = "/admin/plates";
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        for (let key in errors) {
+                            $('.error-' + key).text(errors[key][0]);
+                        }
+                    }
+                },
+                complete: function() {
+                    $('button[type="submit"]').prop('disabled', false);
+                }
+            });
+        });
+    });
 
 </script>
 @endpush
