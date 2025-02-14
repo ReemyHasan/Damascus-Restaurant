@@ -8,6 +8,14 @@
     <meta content="{{$frontends['seo_data']->values['keywords']}}" name="keywords">
     <meta content="{{$frontends['seo_data']->values['description']}}" name="description">
 
+
+    <meta property="og:title" content="{{ $frontends['seo_data']->values['title'] }}">
+<meta property="og:description" content="{{ $frontends['seo_data']->values['description'] }}">
+<meta property="og:image" content="{{ $frontends['seo_data']->image->url ?? $frontends['hero_section']->image->url) }}">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ $frontends['seo_data']->values['title'] }}">
+
     <!-- Favicon -->
     <link href="{{asset("website/img/favicon.ico")}}" rel="icon">
 
