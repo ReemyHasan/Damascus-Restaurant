@@ -12,6 +12,8 @@ class Frontend extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
     protected $fillable = ['key', 'values'];
+    protected $appends = ['image'];
+
     protected $casts = [
         'values' => 'array',
     ];

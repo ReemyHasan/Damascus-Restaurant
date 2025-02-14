@@ -49,7 +49,7 @@
                             <p class="animated slideInLeft mb-4 pb-2">{{$frontends['hero_section']->values['description']}}</p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->webp ?? $frontends['hero_section']->image->url}}" alt="">
+                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->url ?? $frontends['hero_section']->image->url}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -126,9 +126,12 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script>
+        var menus = @json($categories);
+        var defaultImage = @json(asset("website/img/smoke.png"));
+    </script>
     <!-- Template Javascript -->
-    <script src="{{asset("website/js/main.js")}}"></script>
+    <script src="{{asset("website/js/main.js")}}" defer></script>
 </body>
 
 </html>

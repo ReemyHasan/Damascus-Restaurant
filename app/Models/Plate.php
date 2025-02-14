@@ -15,6 +15,7 @@ class Plate extends Model implements HasMedia
     use HasFactory, InteractsWithMedia, SoftDeletes;
 
     protected $fillable = ['title', 'category_id', 'description', 'price'];
+    protected $appends = ['image'];
 
     public function category()
     {
