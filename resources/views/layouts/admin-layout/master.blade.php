@@ -2,6 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <title>@yield('title') | Admin Dashboard</title>
+
     <!-- Bootstrap Css -->
     <link href="{{ URL::asset('/assets/css/bootstrap.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     clearInterval(progressInterval);
                 }
             }, intervalTime);
-            
+
         localStorage.removeItem('success');
     }
 });

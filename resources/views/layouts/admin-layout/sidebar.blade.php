@@ -3,7 +3,7 @@
 
     <!-- LOGO -->
     <div class="navbar-brand-box">
-        <a href="#" class="logo logo-dark">
+        <a href="#" class="logo">
             <span class="logo-sm">
                 <img src="{{ URL::asset('website/img/Logo-Damaskus.png') }}" alt="" height="22">
             </span>
@@ -12,14 +12,6 @@
             </span>
         </a>
 
-        <a href="#" class="logo logo-light">
-            <span class="logo-sm">
-                <img src="{{ URL::asset('website/img/Logo-Damaskus.png') }}" alt="" height="22">
-            </span>
-            <span class="logo-lg">
-                <img src="{{ URL::asset('website/img/Logo-Damaskus.png') }}" alt="" height="60">
-            </span>
-        </a>
     </div>
 
     <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
