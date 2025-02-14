@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
         $this->call([
-            PlateSeeder::class
+            PlateSeeder::class,
+            FrontendSeeder::class
         ]);
     }
 }
