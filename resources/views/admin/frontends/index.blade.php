@@ -10,9 +10,7 @@ Home Page Content
         <div class="page-title-box d-flex align-items-center justify-content-between">
             <div class="page-title-right d-flex align-items-center">
 
-                <a href="{{ route('admin.frontend.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
-                    <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
-                </a>
+
                 <h4 class="mb-0">Home Page Content</h4>
             </div>
 
@@ -27,7 +25,7 @@ Home Page Content
         </div>
     </div>
 </div>
-
+<hr>
 <div class="row custome-template custome-template-card card p-3">
 
     <form action="{{ route('admin.frontend.update') }}" method="POST" enctype="multipart/form-data">
@@ -48,6 +46,7 @@ Home Page Content
                 <img id="heroImagePreview" src="{{ $frontends['hero_section']->image->url ?? '' }}" width="150" class="rounded border p-1" style="{{ $frontends['hero_section']->image ? '' : 'display: none;' }}">
             </div>
         </div>
+        <hr style="font-weight: 600;">
 
         {{-- Contact Section --}}
         <div class="mb-4">
@@ -64,6 +63,7 @@ Home Page Content
             <label>WhatsApp</label>
             <input type="text" name="contact[whatsapp]" class="form-control" value="{{ $frontends['contact']->values['whatsapp'] ?? '' }}">
         </div>
+        <hr style="font-weight: 600;">
 
         {{-- Opening Hours --}}
         <div class="mb-4">
@@ -79,6 +79,7 @@ Home Page Content
             </div>
             <button type="button" id="addOpeningHour" class="btn btn-success btn-sm mt-2">+ Add More</button>
         </div>
+        <hr style="font-size: 400px;">
 
         {{-- Footer Links --}}
         <div class="mb-4">
@@ -95,6 +96,7 @@ Home Page Content
                 <option value="_blank" {{ ($frontends['footer_link']->values['link_target'] ?? '') == '_blank' ? 'selected' : '' }}>New Tab</option>
             </select>
         </div>
+        <hr style="font-weight: 600;">
 
 
         {{-- Hero Section --}}

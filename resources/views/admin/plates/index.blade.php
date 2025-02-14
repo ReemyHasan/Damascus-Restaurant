@@ -8,10 +8,6 @@
     <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
             <div class="page-title-right d-flex align-items-center">
-
-                    <a href="{{ route('admin.plates.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
-                        <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
-                    </a>
                 <h4 class="mb-0">Plates</h4>
             </div>
 

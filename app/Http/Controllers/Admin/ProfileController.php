@@ -34,6 +34,7 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        
         return response()->json([
             'success' => true,
             'message' => 'Profile updated successfully!'

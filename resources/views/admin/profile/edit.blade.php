@@ -11,7 +11,6 @@ Profile
                 <a href="{{ route('admin.plates.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
                     <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
                 </a>
-                <h4 class="mb-0">Profile</h4>
             </div>
 
             <div class="page-title-right">
@@ -69,14 +68,8 @@ Profile
                 data: formData,
                 dataType: "json",
                 success: function(response) {
-                    if (response.success) {
-                        // Show toast notification
-                        showToast(response.message);
-
-                        setTimeout(() => {
-                            window.location.href = "/admin/profile";
-                        }, 2000);
-                    }
+                    localStorage.setItem('success', 'Profile updated successfully!');
+                    location.reload();
                 },
                 error: function(xhr) {
                     if (xhr.status === 422) {
@@ -91,30 +84,7 @@ Profile
         });
     }
 
-    // Function to show Bootstrap Toast
-    function showToast(message) {
-        let toastHTML = `
-             <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
-                <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert"
-                    aria-live="assertive" aria-atomic="true" data-bs-delay="10000">
-                    <div class="d-flex">
-                        <div class="toast-body text-center">
-                            <p>${message}</p>
-                            <div class="progress mt-2" style="height: 5px;">
-                                <div id="toastProgressBar" class="progress-bar bg-success" role="progressbar"
-                                    style="width: 100%;" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
-                </div>
-            </div>
-        `;
-        $('body').append(toastHTML);
-        var toast = new bootstrap.Toast(document.getElementById('successToast'));
-        toast.show();
-    }
+
 
     // Apply to forms
     submitForm("#profileUpdateForm", "#saveProfileBtn", "#profileSpinner");

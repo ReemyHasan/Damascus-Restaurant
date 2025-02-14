@@ -9,10 +9,8 @@ Categories List
         <div class="page-title-box d-flex align-items-center justify-content-between">
             <div class="page-title-right d-flex align-items-center">
 
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-info fw-bold waves-effect waves-light me-2">
-                    <i style="font-size:18px" class="uil-arrow-left me-1"></i> Back
-                </a>
                 <h4 class="mb-0">Categories</h4>
+
             </div>
 
             <div class="page-title-right">
@@ -37,7 +35,7 @@ Categories List
 
                     <div class="col d-flex align-items-center justify-content-start justify-content-md-end">
                         <button class="btn btn-info fw-bold waves-effect waves-light d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#categoryModal">
-                            <i class="uil-plus-circle ms-2"></i> Add New
+                             Add New <i class="uil-plus-circle ms-2" style="font-size:16px;"></i>
                         </button>
 
                         {{-- <a href="{{ route('admin.categories.create') }}">

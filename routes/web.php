@@ -16,7 +16,9 @@ Route::middleware(['auth'])->prefix('/admin')->as('admin.')->group(function () {
     })->name('clear_cache');
 
     Route::any('/dashboard', [PlateController::class,"index"])->name('dashboard');
-    Route::any('/', [PlateController::class,"index"])->name('dashboard');
+    Route::any('/', [PlateController::class,"index"]);
+    Route::any('', [PlateController::class,"index"]);
+
 
 
 
