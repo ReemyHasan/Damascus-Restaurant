@@ -48,7 +48,7 @@ menus.forEach((menu, index) => {
 
         const img = document.createElement('img');
         img.className = "flex-shrink-0 img-fluid img-menu";
-        img.src = item.image ? item.image.url : defaultImage; 
+        img.src = item.image ? item.image.webp : defaultImage;
         img.alt = item.title;
 
         const textDiv = document.createElement('div');

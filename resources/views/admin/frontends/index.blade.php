@@ -82,8 +82,8 @@ Home Page Content
             <label>Email</label>
             <input type="email" name="contact[email]" class="form-control" value="{{ $frontends['contact']->values['email'] ?? '' }}">
 
-            <label>WhatsApp</label>
-            <input type="text" name="contact[whatsapp]" class="form-control" value="{{ $frontends['contact']->values['whatsapp'] ?? '' }}">
+            <label>Location</label>
+            <input type="text" name="contact[location]" class="form-control" value="{{ $frontends['contact']->values['location'] ?? '' }}">
         </div>
         <hr style="font-weight: 600;">
 

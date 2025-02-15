@@ -11,7 +11,7 @@
 
     <meta property="og:title" content="{{ $frontends['seo_data']->values['title'] }}">
     <meta property="og:description" content="{{ $frontends['seo_data']->values['description'] }}">
-    <meta property="og:image" content="{{ $frontends['seo_data']->image->url ?? $frontends['hero_section']->image->url }}">
+    <meta property="og:image" content="{{ $frontends['seo_data']->image->webp ?? $frontends['hero_section']->image->url }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ $frontends['seo_data']->values['title'] }}">
@@ -57,7 +57,7 @@
                             <p class="animated slideInLeft mb-4 pb-2">{{$frontends['hero_section']->values['description']}}</p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->url ?? $frontends['hero_section']->image->url}}" alt="">
+                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->webp ?? $frontends['hero_section']->image->url}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -78,9 +78,23 @@
                 <div class="row g-5">
                     <div class="col-lg-6 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        @if (isset($frontends['contact']->values['address']) && $frontends['contact']->values['address'] !="")
+
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ $frontends['contact']->values['address'] ?? '' }}</p>
+
+                        @endif
+
+                        @if (isset($frontends['contact']->values['phone']) && $frontends['contact']->values['phone'] !="")
+
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ $frontends['contact']->values['phone'] ?? '' }}</p>
+
+                        @endif
+
+                        @if (isset($frontends['contact']->values['email']) && $frontends['contact']->values['email'] !="")
+
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ $frontends['contact']->values['email'] ?? '' }}</p>
+
+                        @endif
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
@@ -115,8 +129,8 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         <!-- Whatsapp -->
         <div class="Whatsapp-wrap">
-            <a href="{{$frontends['contact']->values['location']}}" target="_blank" class="Whatsapp-icon">
-                <img src="{{asset("website/img/whatsapp.png")}}" alt="cup">
+            <a href="{{(isset($frontends['contact']->values['location']) && $frontends['contact']->values['location']) ?$frontends['contact']->values['location'] : "#"}}" target="_blank" class="Whatsapp-icon">
+                <img src="{{asset("website/img/Location.png")}}" alt="cup">
             </a>
 
             <div class="smoke-wrap">
