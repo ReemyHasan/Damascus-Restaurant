@@ -10,14 +10,14 @@
 
 
     <meta property="og:title" content="{{ $frontends['seo_data']->values['title'] }}">
-<meta property="og:description" content="{{ $frontends['seo_data']->values['description'] }}">
-<meta property="og:image" content="{{ $frontends['seo_data']->image->url ?? $frontends['hero_section']->image->url }}">
-<meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="{{ $frontends['seo_data']->values['title'] }}">
+    <meta property="og:description" content="{{ $frontends['seo_data']->values['description'] }}">
+    <meta property="og:image" content="{{ $frontends['seo_data']->image->url ?? $frontends['hero_section']->image->url }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ $frontends['seo_data']->values['title'] }}">
 
     <!-- Favicon -->
-    <link href="{{asset("website/img/favicon.ico")}}" rel="icon">
+    <link href="{{asset("favicon.ico")}}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,7 +115,7 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         <!-- Whatsapp -->
         <div class="Whatsapp-wrap">
-            <a href="https://wa.me/{{$frontends['contact']->values['whatsapp']}}" target="_blank" class="Whatsapp-icon">
+            <a href="{{$frontends['contact']->values['location']}}" target="_blank" class="Whatsapp-icon">
                 <img src="{{asset("website/img/whatsapp.png")}}" alt="cup">
             </a>
 
@@ -137,6 +137,7 @@
     <script>
         var menus = @json($categories);
         var defaultImage = @json(asset("website/img/smoke.png"));
+
     </script>
     <!-- Template Javascript -->
     <script src="{{asset("website/js/main.js")}}" defer></script>
