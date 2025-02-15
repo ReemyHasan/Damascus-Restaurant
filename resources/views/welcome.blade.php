@@ -52,7 +52,7 @@
                 <div class="container">
                     <div class="row align-items-center g-5">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <img class="logo" src="{{asset("website/img/Logo-Damaskus.png")}}" alt="Logo">
+                            <img class="logo" src="{{asset("website/img/Logo-Damaskus.webp")}}" alt="Logo">
                             <h1 class="display-7 animated slideInLeft text-white">{{$frontends['hero_section']->values['title']}}</h1>
                             <p class="animated slideInLeft mb-4 pb-2">{{$frontends['hero_section']->values['description']}}</p>
                         </div>
@@ -127,17 +127,17 @@
         <!-- Whatsapp -->
         <div class="Whatsapp-wrap">
             <a href="{{(isset($frontends['contact']->values['location']) && $frontends['contact']->values['location']) ?$frontends['contact']->values['location'] : "#"}}" target="_blank" class="Whatsapp-icon">
-                <img src="{{asset("website/img/Location.png")}}" alt="cup">
+                <img src="{{asset("website/img/Location.webp")}}" alt="cup">
             </a>
 
             <div class="smoke-wrap">
-                <img class="smoke" src="{{asset("website/img/smoke.png")}}" alt="smoke">
+                <img class="smoke" src="{{asset("website/img/smoke.webp")}}" alt="smoke">
             </div>
             <div class="smoke-wrap">
-                <img class="smoke2" src="{{asset("website/img/smoke.png")}}" alt="smoke">
+                <img class="smoke2" src="{{asset("website/img/smoke.webp")}}" alt="smoke">
             </div>
             <div class="smoke-wrap">
-                <img class="smoke3" src="{{asset("website/img/smoke.png")}}" alt="smoke">
+                <img class="smoke3" src="{{asset("website/img/smoke.webp")}}" alt="smoke">
             </div>
         </div>
     </div>
