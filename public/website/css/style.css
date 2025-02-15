@@ -91,13 +91,13 @@ html,body{
 
 
 /*** Hero Header ***/
-.hero-header {
+/* .hero-header {
     background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/bg-hero.webp);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 3rem 0 !important;
-}
+} */
 .hero-header .img-fluid {
     animation: imgRotate 50s linear infinite;
 }

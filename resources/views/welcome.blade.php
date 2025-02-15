@@ -33,6 +33,8 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset("website/css/style.css")}}" rel="stylesheet">
+    <link rel="preload" as="image" href="{{ asset('website/img/bg-hero.webp') }}" type="image/webp">
+
 </head>
 
 <body>
@@ -48,7 +50,11 @@
 
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <div class="container-xxl hero-header mb-5">
+            <div class="container-xxl hero-header mb-5"
+            style="background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)),
+            url('{{ asset('website/img/bg-hero.webp') }}');
+            background-position: center; background-repeat: no-repeat; background-size: cover;"
+            >
                 <div class="container">
                     <div class="row align-items-center g-5">
                         <div class="col-lg-6 text-center text-lg-start">

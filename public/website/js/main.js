@@ -50,6 +50,9 @@ menus.forEach((menu, index) => {
         img.className = "flex-shrink-0 img-fluid img-menu";
         img.src = item.image ? item.image.webp : defaultImage;
         img.alt = item.title;
+        img.width = "80px";
+        img.height = "80px";
+
 
         const textDiv = document.createElement('div');
         textDiv.className = "w-100 d-flex flex-column text-start ps-4";
