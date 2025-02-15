@@ -9,10 +9,10 @@ return [
         ],
     ],
     'contact' => [
-        'address' =>  ['validation' => ['required', 'string']],
-        'phone' =>  ['validation' => ['required', 'string']],
-        'email' =>  ['validation' => ['required', 'string', 'email']],
-        'whatsapp' =>  ['validation' => ['required', 'string']],
+        'address' =>  ['validation' => ['nullable', 'string']],
+        'phone' =>  ['validation' => ['nullable', 'string']],
+        'email' =>  ['validation' => ['nullable', 'string', 'email']],
+        'location' =>  ['validation' => ['nullable', 'string']],
     ],
     'opening_hours' => [
 

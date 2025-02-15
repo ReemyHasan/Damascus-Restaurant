@@ -58,7 +58,7 @@
                                 <tr>
                                     <th>#ID</th>
                                     <th>Image</th>
-                                    <th>Title</th>
+                                    <th>Name</th>
                                     <th>Category</th>
                                     <th>Actions</th>
                                 </tr>

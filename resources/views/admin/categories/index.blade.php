@@ -49,7 +49,7 @@ Categories List
                         <thead>
                             <tr>
                                 <th>#ID</th>
-                                <th>Title</th>
+                                <th>Name</th>
                                 <th>Description</th>
                                 <th>Actions</th>
                             </tr>

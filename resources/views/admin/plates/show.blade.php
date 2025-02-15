@@ -34,7 +34,7 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th width="30%">Title</th>
+                                <th width="30%">Name</th>
                                 <td>{{ $plate->title ?? 'N/A' }}</td>
                             </tr>
                             <tr>

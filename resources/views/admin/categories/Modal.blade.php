@@ -10,7 +10,7 @@
                     @csrf
                     <input type="hidden" id="categoryId">
                     <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
+                        <label for="title" class="form-label">Name</label>
                         <input type="text" class="form-control" id="title" name="title" >
                         <span class="text-danger error-text title_error"></span>
                     </div>
