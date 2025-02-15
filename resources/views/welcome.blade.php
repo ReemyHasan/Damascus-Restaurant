@@ -77,7 +77,7 @@
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-6 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Kontakt Info </h4>
                         @if (isset($frontends['contact']->values['address']) && $frontends['contact']->values['address'] !="")
 
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ $frontends['contact']->values['address'] ?? '' }}</p>
@@ -97,7 +97,7 @@
                         @endif
                     </div>
                     <div class="col-lg-6 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Öffnungszeiten   </h4>
 
                         @foreach($frontends['opening_hours']->elements() as $index => $frontend)
                         <h5 class="text-light fw-normal">{{ $frontend->values['date'] ?? '' }}</h5>
@@ -113,9 +113,8 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="{{$frontends['footer_link']->values['link']}}" target="{{$frontends['footer_link']->values['link_target']}}">{{$frontends['footer_link']->values['title']}}</a>, All Right
-                            Reserved.
-                            Designed By <a class="border-bottom" target="_blank" href="https://alaa-mhna.com/">Alaa
+                            &copy; <a class="border-bottom" href="{{$frontends['footer_link']->values['link']}}" target="{{$frontends['footer_link']->values['link_target']}}">{{$frontends['footer_link']->values['title']}}</a>, Alle Rechte vorbehalten.
+                            entworfen von <a class="border-bottom" target="_blank" href="https://alaa-mhna.com/">Alaa
                                 Mhna</a>
                         </div>
                     </div>
