@@ -46,6 +46,7 @@ class Plate extends Model implements HasMedia
     {
         $this->addMediaConversion('webp')
             ->format('webp')
+            ->fit(Fit::Crop, 100, 100)
             ->nonQueued();
     }
 }
