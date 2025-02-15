@@ -45,6 +45,7 @@ class Plate extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('webp')
-            ->format('webp');
+            ->format('webp')
+            ->nonQueued();
     }
 }
