@@ -57,7 +57,7 @@
                             <p class="animated slideInLeft mb-4 pb-2">{{$frontends['hero_section']->values['description']}}</p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->webp ?? $frontends['hero_section']->image->url}}" alt="">
+                            <img style="border-radius: 50%;" class="img-fluid" src="{{$frontends['hero_section']->image->webp ?? $frontends['hero_section']->image->url}}" alt="Hero Image" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -113,9 +113,7 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="{{$frontends['footer_link']->values['link']}}" target="{{$frontends['footer_link']->values['link_target']}}">{{$frontends['footer_link']->values['title']}}</a>, Alle Rechte vorbehalten.
-                            entworfen von <a class="border-bottom" target="_blank" href="https://alaa-mhna.com/">Alaa
-                                Mhna</a>
+                            &copy; <a class="border-bottom" href="{{$frontends['footer_link']->values['link']}}" target="{{$frontends['footer_link']->values['link_target']}}">{{$frontends['footer_link']->values['title']}}</a>, Alle Rechte vorbehalten. entworfen von <a class="border-bottom" target="_blank" href="https://alaa-mhna.com/">Alaa Mhna</a>
                         </div>
                     </div>
                 </div>
@@ -145,8 +143,8 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script>
         var menus = @json($categories);
         var defaultImage = @json(asset("website/img/smoke.png"));
