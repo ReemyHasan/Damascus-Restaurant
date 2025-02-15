@@ -33,7 +33,7 @@ class FrontendSeeder extends Seeder
                     'address' => '123 Street, New York, USA',
                     'phone' => '+012 345 67890',
                     'email' => 'info@example.com',
-                    'location' => 'https://app.goo.gl/pa2rG7jDp1JQfPSP7?g_st=aw',
+                    'location' => 'https://maps.app.goo.gl/pa2rG7jDp1JQfPSP7?g_st=aw',
                 ]
             ],
             [
