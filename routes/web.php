@@ -8,7 +8,9 @@ use App\Http\Controllers\Website\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [HomeController::class, 'home'])->name('website.home');
 
+require __DIR__ . '/auth.php';
 Route::middleware(['auth'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/clear-cache', function () {
         if (Artisan::call('optimize:clear') === 0)
@@ -30,13 +32,8 @@ Route::middleware(['auth'])->prefix('/admin')->as('admin.')->group(function () {
     Route::get('/frontend', [FrontendController::class,'index'])->name('frontend.index');
     Route::post('/admin/frontend/update', [FrontendController::class, 'update'])->name('frontend.update');
 
-
-
-
     Route::resource('categories', CategoryController::class);
     Route::resource('plates', PlateController::class);
 
 });
-Route::get('/', [HomeController::class, 'home'])->name('website.home');
 
-require __DIR__ . '/auth.php';
